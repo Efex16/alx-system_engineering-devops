@@ -37,6 +37,11 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 
+frontend ssl_443
+         bind *:443 ssl crt /etc/haproxy/cert/cert.pem
+         reqadd X-Forwarded-Proto:\ https
+         default_backend web_servers
+	 
 frontend efex16.tech
         bind 0:80
         bind 0:443 ssl crt /etc/ssl/private/efex16.tech.pem
